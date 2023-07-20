@@ -5,6 +5,14 @@ import os
 from urllib.parse import urljoin
 import string
 
+RATINGS = {
+    "one" : 1,
+    "two" : 2,
+    "three" : 3,
+    "four" : 4,
+    "five" : 5
+}
+
 
 def get_all_categories():
     """
@@ -134,7 +142,7 @@ def get_book_infos(url_book):
     product_description = soup.find('article').find('p').text
 
     # Get the review rating, number of stars
-    review_rating = soup.find('p', class_='star-rating')['class'][1] + ' stars'
+    review_rating = RATINGS.get(soup.find('p', class_='star-rating')['class'][1].lower())
 
     # Get the book details
     product_info = soup.find('table', class_='table')
