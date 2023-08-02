@@ -5,6 +5,9 @@ import os
 from urllib.parse import urljoin
 import string
 
+
+url = "http://books.toscrape.com/"
+
 RATINGS = {
     "one" : 1,
     "two" : 2,
@@ -21,7 +24,6 @@ def get_all_categories():
     Returns:
         list: A list containing all categories of books.
     """
-    url = "http://books.toscrape.com/"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -136,8 +138,8 @@ def get_book_infos(url_book):
 
     # Get the image of the book
     image_book = soup.find('img')
-    """image_src = url_book + image_book['src'].strip('../../')"""
-    image_src = "http://books.toscrape.com/" + image_book['src'].strip('../../')
+    """image_src = "http://books.toscrape.com/" + image_book['src'].strip('../../')"""
+    image_src = urljoin(url, image_book['src'])
     # Get the product description
     product_description = soup.find('article').find('p').text
 
