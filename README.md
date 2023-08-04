@@ -124,7 +124,7 @@ Vous pouvez exécuter l'application en utilisant la commande python main.py apr�
 
 ## Mise en forme des fichiers csv via Excel
 
-Afin d'optimiser la lecture des fichiers csv voici les instructions à effectuer pour une mis en forme optimisée :
+Afin d'optimiser la lecture des fichiers csv voici les instructions à effectuer pour une mise en forme optimisée :
 
 Après avoir ouvert le fichier csv dans Excel, aller dans l'onglet "Données" ensuite dans "Convertir".
-Selectionner "Délimité", faire "suivant" et cocher la case "Virgule", faire "suivant", selectionner "Standard" et faire "Terminer
+Selectionner "Délimité", faire "suivant" et cocher la case "Virgule", faire "suivant", selectionner "Standard" et faire "Terminer"
