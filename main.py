@@ -5,9 +5,10 @@ import os
 from urllib.parse import urljoin
 import string
 
-
+# Base URL of the website
 url = "http://books.toscrape.com/"
 
+# Dictionary for review ratings
 RATINGS = {
     "one" : 1,
     "two" : 2,
@@ -31,15 +32,13 @@ def get_all_categories():
     category_tags = soup.find("ul", class_="nav-list").find("ul").find_all("a", href=True)
     for category_tag in category_tags:
         category = category_tag.text.strip()
-        """categories.append((category, category_tag["href"]))"""
         categories.append((category, urljoin(url, category_tag["href"])))
         
-    # Vérifier si le dossier "data" existe, sinon le créer
+    # Check if the "data" directory exists, create it if not
     if not os.path.exists("data"):
         os.makedirs("data")    
 
     # Write categories to a CSV file
-    """with open("categories.csv", "w", newline="", encoding="utf-8") as file:"""
     file_path_categories = os.path.join("data", "categories.csv")
     with open(file_path_categories, "w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
@@ -87,20 +86,22 @@ def get_all_books_from_one_category(cat_url):
     soup = BeautifulSoup(response.content, 'html.parser')
 
     category = soup.find("h1").text.strip()
-    books = get_books_from_page(soup, cat_url)  # Call the new function
+    # Call the function get_books_from_page
+    books = get_books_from_page(soup, cat_url)  
     next_page = soup.find("li", class_="next")
 
     while next_page:
         next_url = urljoin(cat_url, next_page.find("a")["href"]) 
         response = requests.get(next_url)
         soup = BeautifulSoup(response.content, 'html.parser')
-        books += get_books_from_page(soup, next_url)  # Append books from the next page
+        # Append books from the next page
+        books += get_books_from_page(soup, next_url)  
         next_page = soup.find("li", class_="next")    
 
-    # Nettoyer le nom de la catégorie pour le nom du fichier
+    # Clean the category name for the file name
     cleaned_category_name = ''.join(c if c in string.ascii_letters + string.digits + " _-" else '_' for c in category.strip())
 
-    # Création du nom de fichier en fonction de la catégorie du livre
+    # Create the file name based on the book category
     file_name = cleaned_category_name.lower() + ".csv"
     file_path_books_category = os.path.join("data", file_name)
     
@@ -138,7 +139,6 @@ def get_book_infos(url_book):
 
     # Get the image of the book
     image_book = soup.find('img')
-    """image_src = "http://books.toscrape.com/" + image_book['src'].strip('../../')"""
     image_src = urljoin(url, image_book['src'])
     # Get the product description
     product_description = soup.find('article').find('p').text
@@ -208,7 +208,3 @@ if __name__ == "__main__":
         books = get_all_books_from_one_category(category[1])
         print("All books:", books)
 
-    # Book URL 
-    # book_url = "http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
-    # book_info = get_book_infos(book_url)
-    # print("Book information:", book_info)
