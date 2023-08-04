@@ -39,7 +39,7 @@ Une fois que vous avez activé l'environnement virtuel et installé les dépenda
    python main.py
 
 
-L'application commencera à extraire les informations sur les livres à partir du site "http://books.toscrape.com/" et stockera les données dans des fichiers CSV dans le dossier "data".
+L'application commencera à extraire les informations sur les livres à partir du site "http://books.toscrape.com/" et stockera les données dans des fichiers CSV dans le dossier "data" ainsi que les images.
 
 ## Note
 
@@ -64,11 +64,6 @@ Les informations sont ensuite écrites dans un fichier CSV appelé "categories.c
 **Fonction get_books_from_page(soup, cat_url)
 Cette fonction extrait les informations de tous les livres présents sur une page spécifique du site.
 
-Paramètres :
-
-soup : L'objet BeautifulSoup représentant la page web.
-cat_url : L'URL de la catégorie de livres.
-
 Utilité :
 
 Elle récupère les détails de chaque livre (URL, titre et URL de l'image de couverture).
@@ -77,10 +72,6 @@ La fonction renvoie une liste contenant toutes les URLs des livres présents sur
 
 **Fonction get_all_books_from_one_category(cat_url)
 Cette fonction récupère tous les livres d'une catégorie donnée et de toutes ses pages.
-
-Paramètre :
-
-cat_url : L'URL de la catégorie de livres.
 
 Utilité :
 
@@ -91,9 +82,6 @@ Les informations de chaque livre sont enregistrées dans un fichier CSV spécifi
 **Fonction get_book_infos(url_book)
 Cette fonction extrait les informations détaillées d'un livre spécifique à partir de son URL.
 
-Paramètre :
-
-url_book : L'URL du livre.
 Utilité :
 
 Elle récupère des informations telles que le titre du livre, la catégorie, l'URL de l'image de couverture, la description du produit, la note de l'évaluation, le code UPC, les prix et la disponibilité.
@@ -101,11 +89,6 @@ Les informations sont renvoyées sous forme de dictionnaire.
 
 **Fonction download_book_image(book_image_url, book_title)
 Cette fonction télécharge l'image de couverture d'un livre à partir de son URL et l'enregistre localement.
-
-Paramètres :
-
-book_image_url : L'URL de l'image de couverture du livre.
-book_title : Le titre du livre.
 
 Utilité :
 
