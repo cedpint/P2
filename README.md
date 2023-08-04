@@ -121,3 +121,10 @@ Elle appelle les différentes fonctions pour exécuter le processus d'extraction
 Ces fonctions travaillent ensemble pour extraire les informations sur les livres du site "http://books.toscrape.com/" et les enregistrer dans des fichiers CSV dans le dossier "data". 
 Les images de couverture des livres sont également téléchargées et stockées dans le dossier "images". 
 Vous pouvez exécuter l'application en utilisant la commande python main.py après avoir activé l'environnement virtuel et installé les dépendances.
+
+## Mise en forme des fichiers csv via Excel
+
+Afin d'optimiser la lecture des fichiers csv voici les instructions à effectuer pour une mis en forme optimisée :
+
+Après avoir ouvert le fichier csv dans Excel, aller dans l'onglet "Données" ensuite dans "Convertir".
+Selectionner "Délimité", faire "suivant" et cocher la case "Virgule", faire "suivant", selectionner "Standard" et faire "Terminer
